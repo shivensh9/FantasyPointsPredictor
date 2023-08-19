@@ -23,17 +23,22 @@ export const players = (request, response) => {
           photo: item?.photo,
           first_name: item.first_name,
           second_name: item.second_name,
+          web_name: item.web_name,
           element_type: item.element_type,
+          points: item.total_points,
           team: team.short_name,
           position: position,
           selected_by_percent: item?.selected_by_percent,
+          price: item?.now_cost,
         };
         if (Object.keys(request?.query).length === 0) {
           playersData.push(player);
         } else {
           const filters = request?.query?.position.split(",");
-          //console.log(filters);
-          if (filters.indexOf(position?.singular_name_short) > -1) {
+          if (
+            filters.indexOf(position?.singular_name_short) > -1 ||
+            filters.indexOf(team.short_name) > -1
+          ) {
             playersData.push(player);
           }
         }

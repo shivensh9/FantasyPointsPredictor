@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import { login, register } from "./controlers/User.js";
-import { players } from "./controlers/players.js";
+import { createTeam, players } from "./controlers/players.js";
 const app = express();
 app.use(express.json());
 dotenv.config();
@@ -13,6 +13,7 @@ app.use(cors());
 app.get("/player", players);
 app.post("/login", login);
 app.post("/register", register);
+app.post("/save", createTeam);
 
 mongoose.connect("mongodb://localhost:27017/fantasyApp").then(() => {
   app.listen(8081, () => {

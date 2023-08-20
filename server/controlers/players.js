@@ -1,5 +1,6 @@
 import axios from "axios";
-import { query, request } from "express";
+import { query, request, response } from "express";
+import TeamModel from "../models/Team.js";
 
 export const players = (request, response) => {
   // fetch players from api
@@ -70,19 +71,26 @@ export const player = (request, response) => {
   });
 };
 
-export const createTeam = (request, response) => {
-  axios.get(process.env.PLAYERS_API).then((data) => {
-    let team = {
-      GKP: [],
-      DEF: [],
-      MID: [],
-      FWD: [],
-    };
-    data?.data?.elements.map((item) => {
-      if (Number(request?.query?.id) === item?.id) {
-        team[GKP].push(item.first_name);
-      }
-    });
+// export const createTeam = (request, response) => {
+//   axios.get(process.env.PLAYERS_API).then((data) => {
+//     let team = {
+//       GKP: [],
+//       DEF: [],
+//       MID: [],
+//       FWD: [],
+//     };
+//     data?.data?.elements.map((item) => {
+//       if (Number(request?.query?.id) === item?.id) {
+//         team[GKP].push(item.first_name);
+//       }
+//     });
+//   });
+//   response.status(200).send(team);
+// };
+export const createTeam = async (request, response) => {
+  let teamData = await TeamModel.create({
+    user_id: request.body.id,
+    team: request.body.team,
   });
-  response.status(200).send(team);
+  response.status(200).send(teamData);
 };

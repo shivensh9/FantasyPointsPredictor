@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import axios from "axios";
 import { PRICES } from "../constants/Constants";
 
@@ -197,6 +197,17 @@ function Home() {
       return (item.price / 10).toFixed(1);
     }
   }
+  const saveTeam = () => {
+    let user = localStorage.getItem("user");
+    axios
+      .post("http://localhost:8081/save", {
+        id: JSON.parse(user).id,
+        team: JSON.stringify(team),
+      })
+      .then((d) => {
+        alert("Your team has been saved");
+      });
+  };
 
   function renderPlayers(data) {
     if (data != null) {
@@ -608,7 +619,9 @@ function Home() {
             </p>
           </div>
           <div class="enter-squad-blk">
-            <button class="enter-squad-btn">Enter Squad</button>
+            <button onClick={saveTeam} class="enter-squad-btn">
+              Enter Squad
+            </button>
           </div>
           <div class="fixture-blk">
             <div class="fixture-header-blk line">

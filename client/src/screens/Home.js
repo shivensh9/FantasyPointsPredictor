@@ -58,6 +58,33 @@ function Home() {
     if (selectedRole == "Bournemouth") {
       role_code = "BOU";
     }
+    if (selectedRole == "Aston Villa") {
+      role_code = "AVL";
+    }
+    if (selectedRole == "Crystal Palace") {
+      role_code = "CRY";
+    }
+    if (selectedRole == "Brighton") {
+      role_code = "BHA";
+    }
+    if (selectedRole == "Liverpool") {
+      role_code = "LIV";
+    }
+    if (selectedRole == "Luton") {
+      role_code = "LUT";
+    }
+    if (selectedRole == "Man Utd") {
+      role_code = "MUN";
+    }
+    if (selectedRole == "Nott'm Forest") {
+      role_code = "NFO";
+    }
+    if (selectedRole == "Sheffield Utd") {
+      role_code = "SHU";
+    }
+    if (selectedRole == "Wolves") {
+      role_code = "WOL";
+    }
     return role_code;
   }
   useEffect(() => {
